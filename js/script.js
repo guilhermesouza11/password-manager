@@ -1,4 +1,6 @@
 const form = document.querySelector("#myForm");
+const listPasswords = document.querySelector("#listPasswords");
+const passwords = [];
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -7,7 +9,11 @@ form.addEventListener('submit', (e) => {
 
 function getFormData(){
     const formData = new FormData(form);
-    const dados = Object.fromEntries(formData); 
+    const dados = Object.fromEntries(formData);
+    passwords.push(dados) // Aqui, estou passando as informações de cada senha salva, para o array "passwords".
+    
+    dados["timestamp"] = Date.now(); //Inserindo o timestamp no objeto com as informações a serem salvas
+    dados["createdAt"] = new Date().toLocaleDateString('pt-BR'); //Inserindo o createdAt no objeto com as informações a serem salvas
 
     if(dados.nameservice.trim() === ""){
         alert("Preencha o nome do serviço que deseja salvar!")
@@ -16,7 +22,7 @@ function getFormData(){
     }else if(dados.password.trim() === ""){
         alert("Preencha o campo da senha que deseja salvar!")
     }else{
-        console.log(dados)
+        return passwords
     }
 
     form.reset(); //Retorna todo o formulário no seu status inicial
