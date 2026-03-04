@@ -27,4 +27,6 @@ function getFormData(){
 
     form.reset(); //Retorna todo o formulário no seu status inicial
     form.nameservice.focus(); //Faz com que o foco seja no primeiro input logo após o envio
+
+    console.log("Guilherme.Souza")
 }
