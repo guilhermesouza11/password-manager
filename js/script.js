@@ -4,7 +4,8 @@ const passwords = [];
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    getFormData();
+    console.log(getFormData())
+    renderPasswords();
 })
 
 function getFormData(){
@@ -22,11 +23,18 @@ function getFormData(){
     }else if(dados.password.trim() === ""){
         alert("Preencha o campo da senha que deseja salvar!")
     }else{
+        form.reset(); //Retorna todo o formulário no seu status inicial
+        form.nameservice.focus(); //Faz com que o foco seja no primeiro input logo após o envio
         return passwords
     }
+}
 
-    form.reset(); //Retorna todo o formulário no seu status inicial
-    form.nameservice.focus(); //Faz com que o foco seja no primeiro input logo após o envio
+function renderPasswords(){
+    listPasswords.innerHTML = passwords.map(item => `<li>${item}</li>`).join('');
 
-    console.log("Guilherme.Souza")
+    // passwords.forEach(item => {
+    //     let info = document.createElement('li');
+    //     info.textContent = item;
+    //     listPasswords.appendChild(info);
+    // })
 }
